@@ -1,0 +1,19 @@
+
+# Great Eats in Vancouver #
+## October 23, 2016 ##
+
+Some great spots to eat in Vancouver, BC, Canada. A submission for the Coursera Data Products Week 2 Project.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(leaflet)
+van_spots <- data.frame(
+  lat=c(49.283148, 49.287458, 49.264117),
+  lng=c(-123.103688, -123.119068, -123.162712),
+  popup=c("Bow Down", "Kamei Royale", "Benny's Bagel")
+)
+
+van_spots %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers()
+```
