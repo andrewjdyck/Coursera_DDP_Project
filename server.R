@@ -19,5 +19,22 @@ shinyServer(function(input, output) {
     hist(x, breaks = bins, col = 'darkgray', border = 'white')
 
   })
+  
+  output$SeasonPyExpPlot <- renderPlot({
+    #season <- input$season
+    season <- 2014
+    games <- get_all_season_games(season)
+    season_py_exp <- do.call(
+      'rbind', 
+      lapply(
+        unique(games$HomeTeam), 
+        function(x) single_team_py_exp(games[games$Type=='Regular',], x)
+      )
+    )
+    
+    ggplot(season_py_exp, aes(WeekNumber, PyExp, colour=Team)) +
+      geom_line() +
+      geom_point()
+  })
 
 })
