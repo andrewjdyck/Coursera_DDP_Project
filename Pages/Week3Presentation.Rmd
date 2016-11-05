@@ -1,25 +1,27 @@
-Week 3 Assignment - Plotly Chart
-========================================================
-author: Andrew J Dyck
+---
+title: "GGPLOTLY"
+output: slidy_presentation
 date: October 30, 2016
-autosize: true
+author: Andy Dyck
+---
 
-
-Slide With Plot
-========================================================
-
-```{r, echo=FALSE}
-library(plotly)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r}
+
+## Slide with Plot
+
+```{r, echo=FALSE, message=FALSE}
+library(plotly)
 library(ggplot2)
 data(mtcars)
 #plot_ly(mtcars, x=mtcars$wt, y=mtcars$mpg, mode='markers')
 mm <- mtcars
 mm$am <- as.factor(mm$am)
+names(mm)[c(1,6)] <- c("Weight", "Miles_Per_Gallon")
 levels(mm$am) <- c('Foreign', 'Domestic')
-p <- ggplot(data=mm, aes(x=wt, y=mpg)) + 
+p <- ggplot(data=mm, aes(x=Weight, y=Miles_Per_Gallon)) + 
   geom_point(aes(text=paste("Cylinders: ", cyl)), size=3) + 
   geom_smooth(aes(colour=am, fill=disp)) +
   facet_wrap(~ am)
@@ -27,4 +29,8 @@ gg <- ggplotly(p)
 gg
 ```
 
+## End ##
 
+Thanks!
+
+-- Andy
