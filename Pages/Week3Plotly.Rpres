@@ -8,11 +8,9 @@ autosize: true
 Slide With Plot
 ========================================================
 
-```{r, echo=FALSE}
-library(plotly)
-```
 
 ```{r}
+library(plotly)
 library(ggplot2)
 data(mtcars)
 #plot_ly(mtcars, x=mtcars$wt, y=mtcars$mpg, mode='markers')
