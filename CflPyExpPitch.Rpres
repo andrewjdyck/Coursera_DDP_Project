@@ -1,0 +1,60 @@
+CFL Pythagorean Expectation
+========================================================
+author: Andrew Dyck
+date: November 13, 2016
+autosize: true
+
+Intro to Pythagorean Expectation
+========================================================
+
+Introducing a new shiny application to explore predicted wins in professional Canadian football. 
+
+<https://andrewjdyck.shinyapps.io/cfl_pythagorean_expectation/>.
+
+- A method of predicting team performance used in Baseball for many years adapted to Canadian football
+- The model is far from perfect but is simple to compute with the most basic data.
+- Predictions are reasonable given the simplicity.
+
+
+Calculation & Mathematical Representation
+========================================================
+
+The only data required for the model is the total points for and against for a given team. The calculation is expressed as:
+
+$$
+Win Ratio = \frac{1}{1 + (Points For/Points Against)^{\alpha}}
+$$
+
+Where the parameter $\alpha$ is estimated to be 2.37 based on data from the National Football League (NFL). 
+
+Whether this parameter fits Canadian Football as well is the subject of future exploration.
+
+Performance of Pythagorean Expectation
+========================================================
+The model adapted to Canadian football seems to perform reasonably well, but some teams' actual win % is as low as half the expected value (SSK).
+```{r, echo=FALSE}
+library(dplyr)
+library(magrittr)
+data <- read.csv('./Data/AppData1.csv', stringsAsFactors = FALSE)
+
+result <- data[, c('Team', 'WeekNumber', 'PyExp', 'WinPct')] %>% group_by(Team) %>%
+    filter(WeekNumber == max(WeekNumber)) %>%
+    arrange(Team)
+result$Error <- round((result$WinPct - result$PyExp)^2, 4)
+result[order(result$Error), c('Team', 'PyExp', 'WinPct', 'Error')]
+```
+
+
+Slide 4
+========================================================
+Link below:
+
+<https://andrewjdyck.shinyapps.io/cfl_pythagorean_expectation/>
+
+
+
+
+Thank you!
+========================================================
+Thank you!
+
