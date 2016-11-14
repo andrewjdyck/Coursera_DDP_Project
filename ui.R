@@ -6,7 +6,6 @@
 #
 
 library(shiny)
-library(CanadianFootball)
 library(ggplot2)
 
 shinyUI(fluidPage(
