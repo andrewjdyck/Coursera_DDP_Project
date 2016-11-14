@@ -41,20 +41,18 @@ result <- data[, c('Team', 'WeekNumber', 'PyExp', 'WinPct')] %>% group_by(Team) 
     filter(WeekNumber == max(WeekNumber)) %>%
     arrange(Team)
 result$Error <- round((result$WinPct - result$PyExp)^2, 4)
-result[order(result$Error), c('Team', 'PyExp', 'WinPct', 'Error')]
+as.data.frame(result[order(result$Error), c('Team', 'PyExp', 'WinPct', 'Error')])
 ```
 
 
-Slide 4
+
+Thank you!
 ========================================================
-Link below:
+
+Please visit my Shiny App built with Rstudio to see Pythagorean Expectation in action:
 
 <https://andrewjdyck.shinyapps.io/cfl_pythagorean_expectation/>
 
+Thanks!
 
-
-
-Thank you!
-========================================================
-Thank you!
 
